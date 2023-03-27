@@ -1,0 +1,23 @@
+version: "3.8"
+
+services: 
+  app: 
+    build:
+     context: ./
+     dockerfile: Dockerfile
+    container_name: alisher-app
+    restart: always
+    working_dir: /var/www/
+    volumes:
+      - ../src:/var/www
+  nginx: 
+   build: 
+    dockerfile: Dockerfile
+    context: ./ngnix
+   container_name: alisher-nginx
+   restart: always 
+   ports: 
+    - "8000:80"
+   volumes:
+     - ../src:/var/www
+ 
